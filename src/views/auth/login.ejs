@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram | Login</title>
+
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+
+  <body>
+    <div id="content-container">
+      <section class="user">
+        <div class="login-container">
+          <h1 class="instagram-logo-box">Instagram</h1>
+          <form id="login-post" method="POST" action="/auth/login">
+            <div class="inputs-container">
+              <input type="text" name="body" placeholder="email or username" />
+            </div>
+            <div class="inputs-container">
+              <input type="password" name="password" placeholder="Password" />
+            </div>
+
+            <div class="inputs-container">
+              <input type="text" name="captcha" placeholder="captcha" />
+              <input
+                type="hidden"
+                name="captcha_id"
+                value="<%= captcha.captchaID %>"
+              />
+            </div>
+            <div class="captcha"><%- captcha.captchaPic %></div>
+
+            <button type="submit" class="login-button">Log In</button>
+          </form>
+
+          <!--Password recovery-->
+          <a class="password-forgot" href="/auth/forget-password"
+            >Forgot password?</a
+          >
+        </div>
+
+        <!--Sign up-->
+        <div class="signup-container">
+          <p>
+            Don't have an account?
+            <a class="signup" href="/auth/register">Sign up</a>
+          </p>
+        </div>
+      </section>
+    </div>
+    <script src="/vendor/sweetalert_v2/sweetalert_v2.js"></script>
+    <script>
+      if ("<%= locals.messages?.err %>") {
+        swal.fire({
+          title: "<%= locals.messages?.err %>",
+          icon: "error",
+          button: "ok",
+        });
+      }
+      if ("<%= locals.messages?.succ %>") {
+        swal.fire({
+          title: "<%= locals.messages?.succ %>",
+          icon: "success",
+          button: "ok",
+        });
+      }
+    </script>
+  </body>
+</html>

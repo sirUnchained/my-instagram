@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram | Register</title>
+    <link rel="stylesheet" href="/css/register.css" />
+  </head>
+  <body>
+    <main>
+      <div class="page">
+        <div class="header">
+          <h1 class="logo">Instagram</h1>
+          <p>Sign up to see photos and videos from your friends.</p>
+        </div>
+        <div class="_container">
+          <form action="/auth/register" method="post">
+            <input type="text" name="name" placeholder="Full Name" />
+            <input type="text" name="username" placeholder="Username" />
+            <input type="text" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+            />
+            <input type="text" name="captcha" placeholder="captcha" />
+            <input
+              type="hidden"
+              name="captcha_id"
+              value="<%= captcha.captchaID %>"
+            />
+            <div class="captcha" style="display: flex; justify-content: center">
+              <%- captcha.captchaPic %>
+            </div>
+            <button type="submit">Sign up</button>
+          </form>
+
+          <ul>
+            <li>By signing up, you agree to our</li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">Data Policy</a></li>
+            <li>and</li>
+            <li><a href="">Cookies Policy</a> .</li>
+          </ul>
+        </div>
+      </div>
+      <div class="option">
+        <p>Have an account? <a href="/auth/login">Log in</a></p>
+      </div>
+    </main>
+    <script src="/vendor/sweetalert_v2/sweetalert_v2.js"></script>
+    <script>
+      if ("<%= locals.messages?.err %>") {
+        swal.fire({
+          title: "<%= locals.messages?.err %>",
+          icon: "error",
+          button: "ok",
+        });
+      }
+      if ("<%= locals.messages?.succ %>") {
+        swal.fire({
+          title: "<%= locals.messages?.succ %>",
+          icon: "success",
+          button: "ok",
+        });
+      }
+    </script>
+  </body>
+</html>
