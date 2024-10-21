@@ -7,7 +7,7 @@ const storyModel = require("./../../models/stories.model");
 const followModel = require("./../../models/follow.model");
 const notifModel = require("../../models/notification.model");
 
-const { registerValidator } = require("./../auth/auth.validator");
+const { editProfileValidator } = require("./profile.validator");
 const checkAccess = require("../../utils/checkAccess");
 const { removeSingle } = require("../../utils/removeFile");
 const fs = require("node:fs");
@@ -210,7 +210,7 @@ exports.updateProfile = async (req, res, next) => {
       return res.redirect(`/profile/${username}`);
     }
 
-    await registerValidator.validate(req.body, { abortEarly: false });
+    await editProfileValidator.validate(req.body, { abortEarly: false });
 
     if (!req.file) {
       req.flash("err", "profile photo is require.");
