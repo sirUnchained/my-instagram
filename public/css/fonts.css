@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "sf bold";
+  src: url("./../fonts/sf-pro-text-bold.ttf");
+}
+
+@font-face {
+  font-family: "sf semi bold";
+  src: url("./../fonts/sf-pro-text-semibold.ttf");
+}
+
+@font-face {
+  font-family: "sf medium";
+  src: url("./../fonts/sf-pro-text-medium.ttf");
+}
+
+@font-face {
+  font-family: "sf regular";
+  src: url("./../fonts/sf-pro-text-regular.ttf");
+}

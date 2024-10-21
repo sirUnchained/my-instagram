@@ -1,0 +1,74 @@
+@import url("./varables.css");
+@import url("./../vendor/SwiperSlider/swiper.css");
+@import url("./../vendor/bootstrap/bootstrap.min.css");
+@import url("./../vendor/fontawesome/all.min.css");
+@import url("./reset_css.css");
+@import url("./reset_scrollbar.css");
+@import url("comment.css");
+
+body {
+  font-family: var(--font-regular), sans-serif, serif;
+  background-color: var(--bg-color);
+}
+.swiper-pagination {
+  bottom: 5rem !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+a {
+  color: inherit;
+}
+
+.liked path {
+  fill: #ff0000;
+  /* stroke: #000; */
+}
+
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.hasStory {
+  border-radius: 100%;
+  border: 0.2rem solid var(--pink-100);
+}
+
+/* .not-found{
+  padding: 1rem;
+  
+} */
+
+/* .offcanvas-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #000;
+} */
+
+/* 
+img {
+  height: inherit;
+}
+a {
+  height: 100%;
+  display: block;
+}
+
+.profile {
+  border-radius: 100%;
+  cursor: pointer;
+}
+.badge-story {
+  border-radius: 100%;
+}
+.has-story {
+  border: 0.1rem solid var(--pink-80);
+} */
