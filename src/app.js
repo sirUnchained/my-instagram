@@ -36,7 +36,7 @@ app.use(
         ],
         objectSrc: ["'none'"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
-        scriptSrcAttr: ["'none'"],
+        scriptSrcAttr: ["'self", "https:", "'unsafe-inline'"],
         styleSrc: ["'self'", "https:", "'unsafe-inline'"],
       },
     },
