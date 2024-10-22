@@ -8,6 +8,7 @@ const session = require("cookie-session");
 const flash = require("express-flash");
 const helmet = require("helmet");
 const cors = require("./middlewares/CORS");
+const configs = require("./configENV");
 
 // seting dependencies
 app.use(express.static(path.join(__dirname, "..", "public")));
