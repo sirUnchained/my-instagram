@@ -28,11 +28,11 @@ app.use(
         imgSrc: [
           "'self'",
           "data:",
-          "https://b-sample-work-space.storage.c2.liara.space",
+          configs.bucketFullURL,
         ],
         mediaSrc: [
           "'self'",
-          "https://b-sample-work-space.storage.c2.liara.space",
+          configs.bucketFullURL,
         ],
         objectSrc: ["'none'"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
