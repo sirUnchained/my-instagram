@@ -1,0 +1,66 @@
+@import url("./fonts.css");
+
+:root {
+  --bg-color: #e0e0e0;
+  --black-100: #000;
+  --black-80: #000000c5;
+  --black-60: #00000098;
+  --black-40: #00000060;
+  --white-100: #fff;
+  --white-80: #ffffffc5;
+  --white-60: #ffffff98;
+  --white-40: #ffffff60;
+  --gray-100: #0c1014;
+  --gray-80: #0c1014c9;
+  --gray-60: #0c101498;
+  --gray-40: #0c101467;
+  --gray-20: #0c101433;
+  --gray-10: #0c10140e;
+  --white-100: #ffffff;
+  --white-80: #ffffffc5;
+  --white-60: #ffffff98;
+  --white-40: #ffffff60;
+  --yellow-100: #ffd600;
+  --yellow-80: #ffd500d5;
+  --yellow-60: #ffd500a9;
+  --yellow-40: #ffd5007c;
+  --yellow-20: #ffd5003d;
+  --orange-100: #ff7a00;
+  --orange-80: #ff7b00c9;
+  --orange-60: #ff7b00a9;
+  --orange-40: #ff7b0071;
+  --orange-20: #ff7b0049;
+  --pink-100: #ff0069;
+  --pink-80: #ff006ac7;
+  --pink-60: #ff006a8f;
+  --pink-40: #ff006a52;
+  --pink-20: #ff006a25;
+  --magenta-100: #d300c5;
+  --magenta-80: #d300c5c4;
+  --magenta-60: #d300c59d;
+  --magenta-40: #d300c55b;
+  --magenta-20: #d300c521;
+  --blue-purple-100: #4169e1;
+  --blue-purple-80: #6680d7;
+  --blue-purple-60: #8c99cc;
+  --blue-purple-40: #b2b2bf;
+  --red-100: #ff0000;
+  --red-80: #cc0000;
+  --red-60: #990000;
+  --red-40: #660000;
+  --green-100: #008000;
+  --green-80: #006600;
+  --green-60: #004c00;
+  --green-40: #003300;
+  --purple-100: #800080;
+  --purple-80: #660066;
+  --purple-60: #4c004c;
+  --purple-40: #330033;
+  --font-bold: "sf bold";
+  --font-semi-bold: "sf semi bold";
+  --font-medium: "sf medium";
+  --font-regular: "sf regular";
+}
+body.dark :root {
+  --bg-color: #363636;
+}

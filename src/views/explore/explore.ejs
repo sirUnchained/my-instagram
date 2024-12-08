@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore | Instagram</title>
+    <link
+      rel="shortcut icon"
+      href="https://b-sample-work-space.storage.c2.liara.space/instagram/insta_icon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="css/explore.css" />
+  </head>
+
+  <body>
+    <div id="comment-modal" class="comment-modal d-none">
+      <div class="modal-content">
+        <span class="close-comment-modal" style="cursor: pointer"
+          ><span class="fa fa-x"></span
+        ></span>
+        <div class="post-comments p-2">
+          <div class="comment-container"></div>
+        </div>
+        <form style="display: flex" action="/comment/new" method="post">
+          <input name="post" class="hidden-input-post" type="hidden" value="" />
+          <input
+            type="text"
+            name="body"
+            class="form-control comment-content"
+            placeholder="new comment"
+          />
+          <button class="btn btn-primary">send</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" style="z-index: 10000000000"></div>
+    <div class="container">
+      <div class="left-panel">
+        <div
+          class="offcanvas offcanvas-start"
+          style="width: fit-content"
+          data-bs-scroll="true"
+          tabindex="-1"
+          id="offcanvasWithBothOptions"
+          aria-labelledby="offcanvasWithBothOptionsLabel"
+        >
+          <div class="offcanvas-header">
+            <!-- <a href="#" class="logo">
+						<img src="assets/Instagram.png" alt="instagram" class="logo-img">
+						<img src="assets/insta-logo.png" class="logo-icon" alt="logo">
+					</a> -->
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+              Instagram
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="side-nav">
+              <ul class="nav-links">
+                <li>
+                  <a href="/"
+                    ><span class="fa fa-home nav-links__icon"></span>
+                    <p>Home</p>
+                  </a>
+                </li>
+                <li onclick="openSearchBox()">
+                  <a href="#"
+                    ><span class="fa fa-search nav-links__icon"></span>
+                    <p>Search</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="/explore"
+                    ><span class="fa fa-map nav-links__icon"></span>
+                    <p>Explore</p>
+                  </a>
+                </li>
+                <!-- <li>
+                  <a href="#"
+                    ><span class="fa fa-video nav-links__icon"></span>
+                    <p>Reels</p>
+                  </a>
+                </li> -->
+                <li>
+                  <a href="/message">
+                    <span class="fa fa-message nav-links__icon"></span>
+                    <p>Message</p>
+                  </a>
+                </li>
+                <li onclick="openNotibox()">
+                  <a href="#"
+                    ><span class="fa fa-exclamation nav-links__icon"></span>
+                    <p>Notifications</p>
+                  </a>
+                </li>
+                <li onclick="opencreatebox()">
+                  <a href="#"
+                    ><span class="fa fa-plus nav-links__icon"></span>
+                    <p>Create</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="/profile/<%= currentUser.username %>"
+                    ><span class="fa fa-user nav-links__icon"></span>
+                    <p><%= currentUser.username %></p>
+                  </a>
+                </li>
+
+                <!-- <li class="more-option" onclick="toggleDropUpOptions()">
+								<a href="#"><img src="assets/menu.png" class="nav-img" alt="more">
+									<p>More</p>
+								</a>
+								<ul class="drop-up-options" id="dropUpOptions">
+									<li><a href="#"><img src="assets/Setting.png" alt="Setting" class="nav-img">
+											Settings</a></li>
+									<li><a href="#"><img src="assets/activity.png" alt="act" class="nav-img"> Your
+											Activities</a></li>
+									<li><a href="#"><img src="assets/mark.png" alt="mark" class="nav-img"> Saved</a></li>
+									<li><a href="#"><img src="assets/night-mode.png" alt="night" class="nav-img"> Switch
+											Apperacence</a></li>
+									<li><a href="#"> ,<img src="assets/warning.png" alt="warning" class="nav-img">Report a
+											problem</a></li>
+									<hr>
+									<li><a href="#">Switch Account</a></li>
+									<hr>
+									<li><a href="#">Logout</a></li>
+								</ul>
+							</li>
+							<div class="active"></div> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="search" id="find">
+          <div class="search-content">
+            <h1>Search</h1>
+            <span class="fa fa-x search-close" onclick="openSearchBox()"></span>
+          </div>
+
+          <div class="box">
+            <input type="text" placeholder="search" class="search-input" />
+          </div>
+          <p>Recent</p>
+          <div class="output">
+            <p>No Recent</p>
+          </div>
+        </div>
+        <div class="notification" id="notification-box">
+          <div class="all-notifications">
+            <div class="all-notifications-content">
+              <h2>Notifications</h2>
+              <span
+                class="fa fa-x Notifications-close"
+                onclick="openNotibox()"
+              ></span>
+            </div>
+            <div class="scrollable-noti">
+              <h5>Today</h5>
+              <% if(currentUser.notifs.length > 0) {%> <%
+              currentUser.notifs.forEach(notif => { %>
+              <div class="persons" style="margin-top: 2rem">
+                <div class="persons-title">
+                  <% if(notif.avatar){ %>
+                  <img
+                    style="width: 4rem; border-radius: 100%"
+                    src="<%= notif.avatar %>"
+                    class="myprofile-img"
+                    alt="profileimg"
+                  />
+                  <% } else{ %>
+                  <img
+                    style="width: 4rem; border-radius: 100%"
+                    src="/profiles/no_profile.png"
+                    class="myprofile-img"
+                    alt="profileimg"
+                  />
+                  <p><%= notif.notifCreator.username %></p>
+                  <% } %>
+                </div>
+
+                <p style="margin-left: 25px; font-size: 1rem; cursor: pointer">
+                  <%- notif.body %>
+                </p>
+              </div>
+              <% }) %> <% } else {%>
+              <div class="alert alert-danger mt-5 me-5">
+                you have no notification
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <header>
+          <div class="header-left">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBothOptions"
+              aria-controls="offcanvasWithBothOptions"
+            >
+              <span class="fa fa-bars"></span>
+            </button>
+            <h1>Instagram</h1>
+          </div>
+
+          <div class="header-right">
+            <div class="position-relative">
+              <span class="fa fa-heart" onclick="openNotibox()"></span>
+              <% if(currentUser?.notifs.length > 0) {%>
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+              ></span>
+              <% } %>
+            </div>
+            <span class="fa fa-paper-plane"></span>
+          </div>
+        </header>
+        <div class="create" id="create-post">
+          <div class="head">
+            <h3>Create a Post</h3>
+            <span class="close-img fa fa-x" onclick="closecreate()"></span>
+          </div>
+          <form
+            method="post"
+            action="/post"
+            class="create-prompt"
+            enctype="multipart/form-data"
+          >
+            <input
+              class="chose-file form-control"
+              type="file"
+              name="posts"
+              multiple
+            />
+            <input
+              class="form-control"
+              type="text"
+              name="hashtags"
+              placeholder="put space between each hashtag ..."
+            />
+            <textarea
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasWithBothOptions"
+              name="description"
+              class="form-control"
+              type="text"
+              class="description-input m-2"
+              placeholder="description"
+            ></textarea>
+            <button type="submit">create post +</button>
+          </form>
+        </div>
+        <div class="main"></div>
+        <br />
+        <div class="allcatchup" style="text-align: center; padding: 2rem">
+          <div class="spinner-border text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <!-- <% if(posts.length){ %>
+        <div class="main">
+          <% posts.forEach(item => { %>
+          <div class="item" onclick="openShowModal('<%= item._id %>')">
+            <div class="img_container">
+              <% if(item.medias[0].path.includes(".mp4")) {%>
+              <video
+                src="<%= item.medias[0].path %>"
+                alt="post1"
+                class="imgs"
+              />
+              <% } else {%>
+              <img src="<%= item.medias[0].path %>" alt="post1" class="imgs" />
+              <% } %>
+
+              <div class="after">
+                <div class="likes">
+                  <p>
+                    <% if(item.isLiked){ %>
+                    <span class="fa fa-heart"></span>
+                    <% } else {%>
+                    <span class="far fa-heart"></span>
+                    <% } %>
+                    <span class="liketext"><b><%= item.totalLikes %></b></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <% } else {%>
+        <div class="alert alert-danger mt-2 text-center w-100">
+          no post found
+        </div>
+        <% } %> -->
+      </div>
+    </div>
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="vendor/fontawesome/all.min.js"></script>
+    <script src="vendor/SwiperSlider/swiper.js"></script>
+    <script src="vendor/sweetalert_v2/sweetalert_v2.js"></script>
+    <script src="/js/explore.js"></script>
+    <script>
+      if ("<%= locals.messages?.err %>") {
+        swal.fire({
+          title: "<%= locals.messages?.err %>",
+          icon: "error",
+          button: "ok",
+        });
+      }
+      if ("<%= locals.messages?.succ %>") {
+        swal.fire({
+          title: "<%= locals.messages?.succ %>",
+          icon: "success",
+          button: "ok",
+        });
+      }
+    </script>
+  </body>
+</html>

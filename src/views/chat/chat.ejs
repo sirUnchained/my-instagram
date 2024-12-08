@@ -1,0 +1,194 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram | Chat</title>
+    <link rel="stylesheet" href="/css/static.css" />
+    <link rel="stylesheet" href="/css/chat.css" />
+    <link
+      rel="shortcut icon"
+      href="https://b-sample-work-space.storage.c2.liara.space/instagram/insta_icon.png"
+      type="image/x-icon"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    /> -->
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <nav class="menu">
+          <ul class="items">
+            <a href="/" class="item">
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </a>
+            <a href="/profile/<%= user.username %>" class="item">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <a href="/message" class="item item-active">
+              <i class="fa fa-commenting" aria-hidden="true"></i>
+            </a>
+          </ul>
+        </nav>
+
+        <section class="discussions">
+          <div class="discussion search">
+            <div class="searchbar">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input class="search-users" type="text" placeholder="Search..." />
+            </div>
+          </div>
+          <div class="chats-list">
+            <div class="discussion message-active">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
+                "
+              >
+                <div class="online"></div>
+              </div>
+              <div class="desc-contact">
+                <p class="name">Megan Leib</p>
+                <p class="message">9 pm at the bar if possible 😳</p>
+              </div>
+              <div class="timer">12 sec</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://i.pinimg.com/originals/a9/26/52/a926525d966c9479c18d3b4f8e64b434.jpg);
+                "
+              >
+                <div class="online"></div>
+              </div>
+              <div class="desc-contact">
+                <p class="name">Dave Corlew</p>
+                <p class="message">
+                  Let's meet for a coffee or something today ?
+                </p>
+              </div>
+              <div class="timer">3 min</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1497551060073-4c5ab6435f12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80);
+                "
+              ></div>
+              <div class="desc-contact">
+                <p class="name">Jerome Seiber</p>
+                <p class="message">I've sent you the annual report</p>
+              </div>
+              <div class="timer">42 min</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://card.thomasdaubenton.com/img/photo.jpg);
+                "
+              >
+                <div class="online"></div>
+              </div>
+              <div class="desc-contact">
+                <p class="name">Thomas Dbtn</p>
+                <p class="message">See you tomorrow ! 🙂</p>
+              </div>
+              <div class="timer">2 hour</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1553514029-1318c9127859?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80);
+                "
+              ></div>
+              <div class="desc-contact">
+                <p class="name">Elsie Amador</p>
+                <p class="message">What the f**k is going on ?</p>
+              </div>
+              <div class="timer">1 day</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1541747157478-3222166cf342?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80);
+                "
+              ></div>
+              <div class="desc-contact">
+                <p class="name">Billy Southard</p>
+                <p class="message">Ahahah 😂</p>
+              </div>
+              <div class="timer">4 days</div>
+            </div>
+
+            <div class="discussion">
+              <div
+                class="photo"
+                style="
+                  background-image: url(https://images.unsplash.com/photo-1435348773030-a1d74f568bc2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80);
+                "
+              >
+                <div class="online"></div>
+              </div>
+              <div class="desc-contact">
+                <p class="name">Paul Walker</p>
+                <p class="message">You can't see me</p>
+              </div>
+              <div class="timer">1 week</div>
+            </div>
+          </div>
+        </section>
+        <section class="chat" style="position: relative">
+          <div class="header-chat">
+            <i class="icon fa-regular fa-user" aria-hidden="true"></i>
+            <p class="name"><%= user.username %></p>
+            <i
+              class="icon clickable fa fa-ellipsis-h right"
+              aria-hidden="true"
+            ></i>
+          </div>
+          <div
+            class="messages-chat"
+            style="overflow: scroll; height: 35rem"
+          ></div>
+          <!-- <div class="footer-chat">
+            <button class="emoji-select">
+              <i class="fa-regular fa-face-smile"></i>
+            </button>
+            <input
+              type="text"
+              class="write-message"
+              placeholder="Type your message here"
+            />
+            <i
+              class="icon send fa-regular fa-paper-plane clickable"
+              onclick="sendmsg()"
+              aria-hidden="true"
+            ></i>
+          </div> -->
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.0/socket.io.js"></script>
+    <script src="/vendor/fontawesome/all.min.js"></script>
+    <script src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/sweetalert_v2/sweetalert_v2.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>

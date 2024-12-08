@@ -1,0 +1,243 @@
+@import url("static.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+/* header style */
+.page .header {
+  text-align: center;
+}
+
+.page .header .logo,
+.page .header p,
+.page .header button {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.page .header > p {
+  font-weight: bold;
+  color: #8e8e8e;
+  font-size: 18px;
+}
+
+.page .header > button {
+  width: inherit;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.page .header div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #8e8e8e;
+}
+
+.page .header div p {
+  padding: 0 20px;
+}
+
+.page .header div hr {
+  width: 200px;
+}
+
+/* _container style*/
+.page ._container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page ._container form,
+input {
+  width: inherit;
+}
+
+.page ._container form input {
+  border: 1px solid #dbdbdb;
+  background-color: #fafafa;
+  padding: 10px 5px;
+  margin: 5px 0;
+}
+
+.page ._container form input:last-of-type {
+  margin-bottom: 10px;
+}
+
+.page ._container form button {
+  width: inherit;
+  margin-bottom: 20px;
+  padding: 7px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0095f6;
+  color: #ffffff;
+}
+
+.page ._container ul {
+  list-style: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.page ._container ul li {
+  display: inline;
+  color: #8e9096;
+}
+
+.page ._container ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #8e9096;
+}
+
+/* option style */
+.option p > a {
+  text-decoration: none;
+  color: #00a0f7;
+}
+
+/* otherapps style */
+.otherapps {
+  text-align: center;
+}
+
+.otherapps p {
+  margin-bottom: 15px;
+}
+
+.otherapps > button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+}
+
+/* footer style */
+.footer {
+  bottom: 0;
+  height: 2.5rem;
+  margin-top: 50px;
+}
+
+.footer ul {
+  text-align: center;
+}
+.footer ul li {
+  display: inline;
+  margin-right: 5px;
+}
+.footer ul li a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #00376b;
+}
+
+.footer p {
+  margin: 10px 0;
+  text-align: center;
+  color: #8e9096;
+  font-size: 14px;
+}
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 400px) {
+  .page {
+    width: 250px;
+    background-color: #fafafa;
+  }
+
+  .page .header {
+    width: inherit;
+    margin-top: 10px;
+  }
+
+  .page ._container {
+    width: inherit;
+  }
+
+  .option {
+    margin: 80px 0;
+  }
+
+  .page ._container input {
+    padding: 10px 5px;
+    margin: 5px 0;
+  }
+
+  .page .footer {
+    width: inherith;
+  }
+}
+
+@media only screen and (min-width: 401px) {
+  .page {
+    border: 1px solid #dbdbdb;
+    width: 350px;
+    background-color: white;
+    margin: 40px 40px 10px 40px;
+  }
+
+  .page .header {
+    width: 270px;
+    margin-top: 15px;
+  }
+
+  .page ._container {
+    width: 270px;
+  }
+
+  .option {
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    width: 350px;
+    height: 70px;
+    margin-top: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .otherapps {
+    margin: 20px 0;
+  }
+
+  .otherapps button {
+    margin-right: 5px;
+  }
+
+  .otherapps button:after-of-type {
+    margin-right: none;
+  }
+
+  .page .footer {
+    width: 100%;
+  }
+}

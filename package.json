@@ -1,0 +1,37 @@
+{
+  "name": "instagram",
+  "version": "3.3.0",
+  "description": "howdy dude, I try to develop a web application ... somthing such as instagram.",
+  "main": "./src/server.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sirUnchained/instagram.git"
+  },
+  "author": "https://github.com/sirUnchained",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-flash": "^0.0.2",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.2",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^6.9.15",
+    "nodemon": "^3.1.4",
+    "socket.io": "^4.8.1",
+    "svg-captcha": "^1.4.0",
+    "yup": "^1.4.0"
+  }
+}
