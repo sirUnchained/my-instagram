@@ -25,11 +25,12 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-schema.statics.followNotif = async function (follower, following) {
+schema.statics.followNotif = async function (follower, following, type) {
   const newNotif = new model({
     notifCreator: follower._id,
     notifFor: following._id,
     body: `<a href="/profile/${follower.username}">${follower.username}</a> wants to followed you.`,
+    notifType: type,
   });
   await newNotif.save();
 };

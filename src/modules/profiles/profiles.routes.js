@@ -16,11 +16,11 @@ router.route("/unfollow/:username").get(authorization, controller.unfollow);
 
 router
   .route("/accept-follower/:notifId")
-  .post(authorization, controller.acceptFollower);
+  .get(authorization, controller.acceptFollower);
 
 router
   .route("/reject-follower/:notifId")
-  .post(authorization, controller.rejectFollower);
+  .get(authorization, controller.rejectFollower);
 
 router
   .route("/edit/:username")

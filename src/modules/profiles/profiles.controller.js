@@ -31,6 +31,14 @@ exports.showProfileView = async (req, res, next) => {
 
     const isOwn = page._id.toString() === visitor._id.toString();
 
+    let isFollowRequestSend = null;
+    if (!isOwn) {
+      isFollowRequestSend = await notifModel.findOne({
+        notifFor: page._id,
+        notifCreator: visitor._id,
+      });
+    }
+
     const hasAccess = await checkAccess(page, visitor);
     if (!hasAccess) {
       req.flash("err", "user page is private, follow him to see posts.");
@@ -45,6 +53,7 @@ exports.showProfileView = async (req, res, next) => {
         pageStory: null,
         pageFollowers: null,
         pageFollowngs: null,
+        isFollowRequestSend: !!isFollowRequestSend,
       });
     }
 
@@ -92,6 +101,7 @@ exports.showProfileView = async (req, res, next) => {
       pageStory,
       pageFollowers,
       pageFollowngs,
+      isFollowRequestSend: !!isFollowRequestSend,
     });
   } catch (error) {
     next(error);
@@ -124,14 +134,14 @@ exports.follow = async (req, res, next) => {
     }
 
     const checkNotif = await notifModel.findOne({
-      notifCreator: follower,
-      notifFor: following,
+      notifCreator: follower._id,
+      notifFor: following._id,
     });
 
     if (checkNotif) {
       await checkNotif.deleteOne();
     } else {
-      notifModel.followNotif(follower, following);
+      notifModel.followNotif(follower, following, "follow");
     }
 
     return res.redirect(`/profile/${following.username}`);
@@ -185,7 +195,7 @@ exports.acceptFollower = async (req, res, next) => {
     if (!checkNotif) {
       return res.status(404).json({ message: "notification not found." });
     }
-    if (user.id.toString() !== checkNotif.notifFor.toString()) {
+    if (user._id.toString() !== checkNotif.notifFor.toString()) {
       return res
         .status(400)
         .json({ message: "this notification is not for you !" });
@@ -197,9 +207,9 @@ exports.acceptFollower = async (req, res, next) => {
     });
     await newFollow.save();
 
-    return res
-      .status(200)
-      .json({ message: "now you've got another follower !" });
+    await notifModel.findByIdAndDelete(notifId);
+
+    return res.redirect(`/profile/${user.username}`);
   } catch (error) {
     next(error);
   }
@@ -214,7 +224,7 @@ exports.rejectFollower = async (req, res, next) => {
     if (!checkNotif) {
       return res.status(404).json({ message: "notification not found." });
     }
-    if (user.id.toString() !== checkNotif.notifFor.toString()) {
+    if (user._id.toString() !== checkNotif.notifFor.toString()) {
       return res
         .status(400)
         .json({ message: "this notification is not for you !" });
@@ -222,9 +232,7 @@ exports.rejectFollower = async (req, res, next) => {
 
     await notifModel.findByIdAndDelete(notifId);
 
-    return res
-      .status(200)
-      .json({ message: "ok that user cannot follow you !" });
+    return res.redirect(`/profile/${user.username}`);
   } catch (error) {
     next(error);
   }
