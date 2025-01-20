@@ -1,6 +1,6 @@
 {
   "name": "instagram",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "howdy dude, I try to develop a web application ... somthing such as instagram.",
   "main": "./src/server.js",
   "scripts": {
