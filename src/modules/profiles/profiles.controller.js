@@ -123,13 +123,16 @@ exports.follow = async (req, res, next) => {
       return res.redirect("/");
     }
 
-    // const newFollow = new followModel({
-    //   follower: follower._id,
-    //   following: following._id,
-    // });
-    // await newFollow.save();
+    const checkNotif = await notifModel.findOne({
+      notifCreator: follower,
+      notifFor: following,
+    });
 
-    notifModel.followNotif(follower, following);
+    if (checkNotif) {
+      await checkNotif.deleteOne();
+    } else {
+      notifModel.followNotif(follower, following);
+    }
 
     return res.redirect(`/profile/${following.username}`);
   } catch (error) {
