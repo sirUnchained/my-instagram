@@ -173,6 +173,22 @@ exports.unfollow = async (req, res, next) => {
   }
 };
 
+exports.acceptFollower = async (req, res, next) => {
+  try {
+    // todo
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.rejectFollower = async (req, res, next) => {
+  try {
+    // todo
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.showEditProfile = async (req, res, next) => {
   const visitor = req.user;
   const { username } = req.params;

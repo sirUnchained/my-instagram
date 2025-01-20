@@ -12,10 +12,10 @@ const schema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
-    likedPost: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "posts",
-      required: false,
+    notifType: {
+      type: String,
+      default: "like",
+      enum: ["like", "follow"],
     },
     body: {
       type: String,
@@ -29,21 +29,8 @@ schema.statics.followNotif = async function (follower, following) {
   const newNotif = new model({
     notifCreator: follower._id,
     notifFor: following._id,
-    body: `<a href="/profile/${follower.username}">${follower.username}</a> just followed you !`,
+    body: `<a href="/profile/${follower.username}">${follower.username}</a> wants to followed you.`,
   });
-  await newNotif.save();
-};
-
-schema.statics.likedNotif = async function (user, page, post) {
-  await model.deleteMany({ likedPost: post });
-
-  const newNotif = new model({
-    notifCreator: user._id,
-    notifFor: page._id,
-    likedPost: post._id,
-    body: `${user.username} just liked <a href="/search/${post._id}">this</a> post !`,
-  });
-
   await newNotif.save();
 };
 
