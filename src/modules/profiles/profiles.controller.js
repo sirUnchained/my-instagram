@@ -123,11 +123,11 @@ exports.follow = async (req, res, next) => {
       return res.redirect("/");
     }
 
-    const newFollow = new followModel({
-      follower: follower._id,
-      following: following._id,
-    });
-    await newFollow.save();
+    // const newFollow = new followModel({
+    //   follower: follower._id,
+    //   following: following._id,
+    // });
+    // await newFollow.save();
 
     notifModel.followNotif(follower, following);
 
@@ -175,7 +175,28 @@ exports.unfollow = async (req, res, next) => {
 
 exports.acceptFollower = async (req, res, next) => {
   try {
-    // todo
+    const { notifId } = req.params;
+    const user = req.user;
+
+    const checkNotif = await notifModel.findById(notifId);
+    if (!checkNotif) {
+      return res.status(404).json({ message: "notification not found." });
+    }
+    if (user.id.toString() !== checkNotif.notifFor.toString()) {
+      return res
+        .status(400)
+        .json({ message: "this notification is not for you !" });
+    }
+
+    const newFollow = new followModel({
+      follower: checkNotif.notifCreator,
+      following: checkNotif.notifFor,
+    });
+    await newFollow.save();
+
+    return res
+      .status(200)
+      .json({ message: "now you've got another follower !" });
   } catch (error) {
     next(error);
   }
@@ -183,7 +204,24 @@ exports.acceptFollower = async (req, res, next) => {
 
 exports.rejectFollower = async (req, res, next) => {
   try {
-    // todo
+    const { notifId } = req.params;
+    const user = req.user;
+
+    const checkNotif = await notifModel.findById(notifId);
+    if (!checkNotif) {
+      return res.status(404).json({ message: "notification not found." });
+    }
+    if (user.id.toString() !== checkNotif.notifFor.toString()) {
+      return res
+        .status(400)
+        .json({ message: "this notification is not for you !" });
+    }
+
+    await notifModel.findByIdAndDelete(notifId);
+
+    return res
+      .status(200)
+      .json({ message: "ok that user cannot follow you !" });
   } catch (error) {
     next(error);
   }

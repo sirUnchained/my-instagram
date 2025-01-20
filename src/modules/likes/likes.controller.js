@@ -1,7 +1,6 @@
 const checkAccess = require("../../utils/checkAccess");
 const likeModel = require("./../../models/like.model");
 const postModel = require("./../../models/posts.model");
-const notifModel = require("../../models/notification.model");
 
 exports.likePost = async (req, res, next) => {
   try {
@@ -33,8 +32,6 @@ exports.likePost = async (req, res, next) => {
 
     const newLike = new likeModel({ user: userID, post: postID });
     await newLike.save();
-
-    notifModel.likedNotif(req.user, post.user, post);
 
     return res.redirect("back");
   } catch (error) {
@@ -71,8 +68,6 @@ exports.dislikePost = async (req, res, next) => {
     }
 
     await likeModel.deleteOne({ user: userID, post: postID });
-
-    await notifModel.deleteOne({ notifCreator: userID, likedPost: postID });
 
     return res.redirect("back");
   } catch (error) {
