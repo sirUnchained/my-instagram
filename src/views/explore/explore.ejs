@@ -111,28 +111,6 @@
                     <p><%= currentUser.username %></p>
                   </a>
                 </li>
-
-                <!-- <li class="more-option" onclick="toggleDropUpOptions()">
-								<a href="#"><img src="assets/menu.png" class="nav-img" alt="more">
-									<p>More</p>
-								</a>
-								<ul class="drop-up-options" id="dropUpOptions">
-									<li><a href="#"><img src="assets/Setting.png" alt="Setting" class="nav-img">
-											Settings</a></li>
-									<li><a href="#"><img src="assets/activity.png" alt="act" class="nav-img"> Your
-											Activities</a></li>
-									<li><a href="#"><img src="assets/mark.png" alt="mark" class="nav-img"> Saved</a></li>
-									<li><a href="#"><img src="assets/night-mode.png" alt="night" class="nav-img"> Switch
-											Apperacence</a></li>
-									<li><a href="#"> ,<img src="assets/warning.png" alt="warning" class="nav-img">Report a
-											problem</a></li>
-									<hr>
-									<li><a href="#">Switch Account</a></li>
-									<hr>
-									<li><a href="#">Logout</a></li>
-								</ul>
-							</li>
-							<div class="active"></div> -->
               </ul>
             </div>
           </div>
@@ -184,9 +162,30 @@
                   <% } %>
                 </div>
 
+                <!-- <p style="margin-left: 25px; font-size: 1rem; cursor: pointer">
+                  <%- notif.body %>
+                </p> -->
+                <% if(notif.notifType === "follow") { %>
                 <p style="margin-left: 25px; font-size: 1rem; cursor: pointer">
                   <%- notif.body %>
                 </p>
+                <div>
+                  <a
+                    class="btn btn-primary"
+                    href="/profile/accept-follower/<%= notif._id %>"
+                    method="post"
+                  >
+                    accept
+                  </a>
+                  <a
+                    class="btn btn-danger"
+                    href="/profile/reject-follower/<%= notif._id %>"
+                    method="post"
+                  >
+                    reject
+                  </a>
+                </div>
+                <% } %>
               </div>
               <% }) %> <% } else {%>
               <div class="alert alert-danger mt-5 me-5">

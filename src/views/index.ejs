@@ -190,15 +190,29 @@
                     align-items: center;
                   "
                 >
-                  <p style="font-size: 1rem; cursor: pointer">
+                  <% if(notif.notifType === "follow") { %>
+                  <p
+                    style="margin-left: 25px; font-size: 1rem; cursor: pointer"
+                  >
                     <%- notif.body %>
                   </p>
-                  <form
-                    action="/notification/remove/<%= notif._id %>"
-                    method="post"
-                  >
-                    <button type="submit" class="btn btn-primary">i see</button>
-                  </form>
+                  <div>
+                    <a
+                      class="btn btn-primary"
+                      href="/profile/accept-follower/<%= notif._id %>"
+                      method="post"
+                    >
+                      accept
+                    </a>
+                    <a
+                      class="btn btn-danger"
+                      href="/profile/reject-follower/<%= notif._id %>"
+                      method="post"
+                    >
+                      reject
+                    </a>
+                  </div>
+                  <% } %>
                 </div>
               </div>
               <% }) %> <% } else {%>
