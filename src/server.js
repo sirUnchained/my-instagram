@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const http = require("http");
+
 const app = require("./app");
 const redis = require("./utils/redis");
-
 const configs = require("./configENV");
+
 const getIoConnection = require("./socketIo/getIoConnection");
 const setUpIoConnection = require("./socketIo");
+const unzip_files = require("./extract.js");
 
 async function run() {
   try {
@@ -36,4 +38,5 @@ async function run() {
   }
 }
 
+unzip_files();
 run();
