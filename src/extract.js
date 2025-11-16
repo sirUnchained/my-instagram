@@ -9,7 +9,13 @@ function unzip_files() {
     try {
         const unzip_public = new adm_zip(public_path);
         const unzip_views = new adm_zip(views_path);
-    } catch (err) {
+
+        const unzip_public_path = path.join(public_path, "..");
+        const unzip_views_path = path.join(views_path, "..");
+
+        unzip_public.extractAllTo(unzip_public_path, true);
+        unzip_views.extractAllTo(unzip_views_path, true);
+    } catch (_) {
         console.log("seems like you did not download everything ...");
         exit(1);
     }
